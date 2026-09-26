@@ -59,11 +59,9 @@ body {
 .screen {
     position: absolute;
     inset: 0;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     padding: 35px 25px;
     text-align: center;
 
@@ -222,63 +220,175 @@ button:active {
     margin-top: 22px;
 }
 
-/* PANTALLA 3 · POLAROIDS */
+/* ==========================================
+   PANTALLA 3 · POLAROIDS INTERACTIVAS
+========================================== */
+
+.memories-screen h2 {
+    margin-bottom: 10px;
+}
+
+.photo-hint {
+    font-size: .73rem;
+    letter-spacing: 1px;
+    opacity: .42;
+    margin-top: -2px;
+}
+
+/* Área de las fotos */
 
 .photos {
     position: relative;
-    height: 330px;
-    margin-top: 15px;
+
+    width: 100%;
+    height: 355px;
+
+    margin: 8px auto 0;
 }
+
+/* Polaroid */
 
 .photo {
     position: absolute;
 
-    width: 185px;
-    height: 245px;
+    width: 215px;
+    height: 285px;
 
     background: white;
 
-    padding: 8px 8px 35px;
+    padding: 9px 9px 39px;
 
-    box-shadow: 0 18px 40px rgba(40,30,25,.17);
+    border-radius: 4px;
 
-    border-radius: 3px;
     overflow: hidden;
 
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+
+    box-shadow:
+        0 18px 40px rgba(40,30,25,.17);
+
     transition:
-        transform .5s cubic-bezier(.22,1,.36,1),
-        box-shadow .4s ease;
+        transform .55s cubic-bezier(.22,1,.36,1),
+        filter .45s ease,
+        box-shadow .45s ease,
+        opacity .45s ease;
 }
 
 .photo img {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
     object-position: center;
+
     display: block;
+
+    pointer-events: none;
 }
 
 .photo::after {
     content: "";
+
     position: absolute;
+
     left: 0;
     right: 0;
     bottom: 0;
-    height: 35px;
+
+    height: 39px;
+
     background: white;
+
     z-index: 2;
 }
 
+/* FOTO IZQUIERDA */
+
 .photo.one {
     left: 50%;
-    top: 30px;
-    transform: translateX(-80%) rotate(-7deg);
+    top: 42px;
+
+    z-index: 1;
+
+    transform:
+        translateX(-83%)
+        rotate(-7deg)
+        scale(.94);
 }
+
+/* FOTO DERECHA - empieza delante */
 
 .photo.two {
     left: 50%;
-    top: 15px;
-    transform: translateX(-20%) rotate(7deg);
+    top: 20px;
+
+    z-index: 3;
+
+    transform:
+        translateX(-17%)
+        rotate(6deg)
+        scale(1);
+}
+
+/* Foto que está delante */
+
+.photo.front {
+    z-index: 10;
+
+    filter: brightness(1);
+
+    box-shadow:
+        0 25px 55px rgba(40,30,25,.25);
+}
+
+/* Primera foto cuando pasa delante */
+
+.photo.one.front {
+    transform:
+        translateX(-83%)
+        translateY(-8px)
+        rotate(-3deg)
+        scale(1.06);
+}
+
+/* Segunda foto cuando pasa delante */
+
+.photo.two.front {
+    transform:
+        translateX(-17%)
+        translateY(-8px)
+        rotate(3deg)
+        scale(1.06);
+}
+
+/* Foto que queda detrás */
+
+.photo.back {
+    z-index: 1;
+
+    filter: brightness(.94);
+
+    box-shadow:
+        0 12px 28px rgba(40,30,25,.13);
+}
+
+.photo.one.back {
+    transform:
+        translateX(-83%)
+        translateY(10px)
+        rotate(-8deg)
+        scale(.93);
+}
+
+.photo.two.back {
+    transform:
+        translateX(-17%)
+        translateY(10px)
+        rotate(8deg)
+        scale(.93);
 }
 
 /* PANTALLA 4 · SAMU */
@@ -323,6 +433,7 @@ button:active {
     content: "♥";
 
     position: absolute;
+
     right: -4px;
     bottom: 10px;
 
@@ -354,6 +465,7 @@ button:active {
 }
 
 @keyframes coupleReveal {
+
     from {
         opacity: 0;
         transform: scale(.8) translateY(15px);
@@ -365,9 +477,7 @@ button:active {
     }
 }
 
-/* ==================================
-   REGALO FALSO
-================================== */
+/* REGALO FALSO */
 
 .fake-screen {
     background: #efeae4;
@@ -443,6 +553,7 @@ button:active {
 }
 
 @keyframes giftReveal {
+
     from {
         transform: scale(.55) rotate(-7deg);
         opacity: 0;
@@ -532,6 +643,7 @@ button:active {
 }
 
 @keyframes sparkle {
+
     from {
         opacity: .25;
         transform: scale(.7) rotate(0);
@@ -589,6 +701,7 @@ button:active {
 }
 
 @keyframes fall {
+
     to {
         transform:
             translateY(110vh)
@@ -602,10 +715,6 @@ button:active {
 
     .screen {
         padding: 28px 22px;
-    }
-
-    .photos {
-        transform: scale(.9);
     }
 
     .letter {
@@ -625,6 +734,37 @@ button:active {
     .letter .signature {
         margin-top: 16px;
     }
+
+    /* Recuerdos */
+
+    .memories-screen h2 {
+        font-size: 2.25rem;
+    }
+
+    .photos {
+        height: 350px;
+    }
+
+    .photo {
+        width: 205px;
+        height: 275px;
+    }
+
+    .photo.one {
+        left: 50%;
+        top: 42px;
+    }
+
+    .photo.two {
+        left: 50%;
+        top: 20px;
+    }
+
+    .memories-screen button {
+        margin-top: 4px;
+    }
+
+    /* Samu */
 
     .couple-screen h2 {
         font-size: 1.85rem;
@@ -650,6 +790,8 @@ button:active {
     .couple-screen button {
         margin-top: 23px;
     }
+
+    /* Regalo falso */
 
     .fake-gift {
         width: 245px;
@@ -762,7 +904,7 @@ button:active {
 
 <!-- 3 · RECUERDOS -->
 
-<section class="screen">
+<section class="screen memories-screen">
 
 <div class="content">
 
@@ -774,16 +916,26 @@ button:active {
         Hemos vivido unas cuantas cosas…
     </h2>
 
+    <div class="photo-hint">
+        TOCA UNA FOTO PARA VERLA ♥
+    </div>
+
     <div class="photos">
 
-        <div class="photo one">
+        <div
+            class="photo one back"
+            onclick="bringPhotoFront(this)"
+        >
             <img
                 src="IMG_0106.jpeg"
                 alt="Recuerdo juntos"
             >
         </div>
 
-        <div class="photo two">
+        <div
+            class="photo two front"
+            onclick="bringPhotoFront(this)"
+        >
             <img
                 src="IMG_2871.jpeg"
                 alt="Otro recuerdo juntos"
@@ -1100,6 +1252,27 @@ function updateProgress() {
 
     progress.style.width =
         percent + "%";
+}
+
+
+/* =========================
+   POLAROIDS INTERACTIVAS
+========================= */
+
+function bringPhotoFront(selectedPhoto) {
+
+    const photos =
+        document.querySelectorAll(".photo");
+
+    photos.forEach(photo => {
+
+        photo.classList.remove("front");
+        photo.classList.add("back");
+
+    });
+
+    selectedPhoto.classList.remove("back");
+    selectedPhoto.classList.add("front");
 }
 
 
