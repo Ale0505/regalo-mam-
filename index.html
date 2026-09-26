@@ -63,10 +63,11 @@ body {
 .screen {
     position: absolute;
     inset: 0;
+
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+
     padding: 35px 25px;
     text-align: center;
 
@@ -142,8 +143,10 @@ p {
 
 button {
     margin-top: 34px;
+
     border: 0;
     border-radius: 100px;
+
     padding: 15px 30px;
 
     background: var(--brown);
@@ -236,7 +239,7 @@ button:active {
 }
 
 /* =========================
-   PHOTOS
+   PANTALLA 3 · POLAROIDS
 ========================= */
 
 .photos {
@@ -267,8 +270,6 @@ button:active {
         box-shadow .4s ease;
 }
 
-/* FOTO REAL */
-
 .photo img {
     width: 100%;
     height: 100%;
@@ -278,8 +279,6 @@ button:active {
 
     display: block;
 }
-
-/* espacio blanco inferior de Polaroid */
 
 .photo::after {
     content: "";
@@ -314,22 +313,93 @@ button:active {
         rotate(7deg);
 }
 
-.photo.one:hover {
-    z-index: 10;
+/* =========================
+   PANTALLA 4 · SAMU
+========================= */
 
-    transform:
-        translateX(-80%)
-        rotate(-3deg)
-        scale(1.04);
+.couple-screen h2 {
+    font-size: clamp(1.8rem, 7.5vw, 2.7rem);
+    line-height: 1.08;
 }
 
-.photo.two:hover {
-    z-index: 10;
+.couple-photo {
+    position: relative;
 
-    transform:
-        translateX(-20%)
-        rotate(3deg)
-        scale(1.04);
+    width: 175px;
+    height: 175px;
+
+    margin: 27px auto 0;
+
+    padding: 6px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.9);
+
+    box-shadow:
+        0 18px 45px rgba(67,45,40,.16);
+
+    animation: coupleReveal 1s cubic-bezier(.22,1,.36,1);
+}
+
+.couple-photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    border-radius: 50%;
+
+    display: block;
+}
+
+.couple-photo::after {
+    content: "♥";
+
+    position: absolute;
+
+    right: -4px;
+    bottom: 10px;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--rose);
+    color: white;
+
+    font-size: 1rem;
+
+    box-shadow: 0 7px 18px rgba(80,50,45,.18);
+}
+
+.couple-signature {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+
+    font-size: 1.12rem;
+    line-height: 1.45;
+
+    margin-top: 22px;
+}
+
+@keyframes coupleReveal {
+
+    from {
+        opacity: 0;
+        transform: scale(.8) translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 /* =========================
@@ -341,7 +411,7 @@ button:active {
 }
 
 .fake-gift {
-    margin-top: 25px;
+    margin: 25px auto 0;
 
     width: 230px;
     height: 230px;
@@ -370,6 +440,7 @@ button:active {
 }
 
 @keyframes giftReveal {
+
     from {
         transform: scale(.5) rotate(-10deg);
         opacity: 0;
@@ -407,8 +478,16 @@ button:active {
     color: #493a35;
 
     background:
-        radial-gradient(circle at top,#f5e3dc 0%,transparent 45%),
-        linear-gradient(180deg,#fffaf6,#eaded4);
+        radial-gradient(
+            circle at top,
+            #f5e3dc 0%,
+            transparent 45%
+        ),
+        linear-gradient(
+            180deg,
+            #fffaf6,
+            #eaded4
+        );
 }
 
 .spa-card {
@@ -552,7 +631,32 @@ button:active {
         margin-top: 16px;
     }
 
+    .couple-screen h2 {
+        font-size: 1.85rem;
+        margin-bottom: 17px;
+    }
+
+    .couple-screen p {
+        font-size: .94rem;
+        line-height: 1.55;
+    }
+
+    .couple-photo {
+        width: 155px;
+        height: 155px;
+        margin-top: 22px;
+    }
+
+    .couple-signature {
+        font-size: 1.05rem;
+        margin-top: 18px;
+    }
+
+    .couple-screen button {
+        margin-top: 23px;
+    }
 }
+
 </style>
 </head>
 
@@ -574,7 +678,9 @@ button:active {
 
 <div class="content">
 
-    <div class="gift-icon">🎁</div>
+    <div class="gift-icon">
+        🎁
+    </div>
 
     <div class="small">
         26 · 09 · 2026
@@ -699,46 +805,40 @@ button:active {
 
 
 <!-- ======================
-     4 · PAREJA
+     4 · SAMU
 ====================== -->
 
-<section class="screen">
+<section class="screen couple-screen">
 
 <div class="content">
 
     <div class="small">
-        Pero espera…
+        De parte de los dos ❤️
     </div>
 
     <h2>
-        Esto no viene solamente de mí.
+        Aunque estas palabras sean mías,
+        este regalo viene de parte de los dos.
     </h2>
 
     <p>
-        Aquí iría un pequeño texto relacionado
-        con tu pareja.
-
-        <br><br>
-
-        Algo que introduzca que el regalo
-        es de los dos.
+        Samu también ha querido formar parte
+        de este pequeño detalle y celebrar contigo
+        un día tan especial.
     </p>
 
-    <div style="
-        margin:30px auto 0;
-        width:150px;
-        height:150px;
-        border-radius:50%;
-        background:white;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        box-shadow:0 15px 40px rgba(0,0,0,.1);
-        font-size:.75rem;
-        padding:20px;
-    ">
-        📷<br>
-        Foto con tu pareja
+    <div class="couple-photo">
+
+        <img
+            src="IMG_7046.jpeg"
+            alt="Ale y Samu"
+        >
+
+    </div>
+
+    <div class="couple-signature">
+        Con mucho cariño,<br>
+        de parte de Samu y mía. ❤️
     </div>
 
     <button onclick="nextScreen()">
