@@ -35,9 +35,7 @@ body {
     color: var(--brown);
 }
 
-/* =========================
-   PROGRESS
-========================= */
+/* PROGRESS */
 
 .progress-container {
     position: fixed;
@@ -56,9 +54,7 @@ body {
     transition: width .7s cubic-bezier(.22,1,.36,1);
 }
 
-/* =========================
-   SCREENS
-========================= */
+/* SCREENS */
 
 .screen {
     position: absolute;
@@ -92,9 +88,7 @@ body {
     max-width: 500px;
 }
 
-/* =========================
-   TYPOGRAPHY
-========================= */
+/* TYPOGRAPHY */
 
 .small {
     font-size: .72rem;
@@ -137,16 +131,12 @@ p {
     20% { transform: scale(1); }
 }
 
-/* =========================
-   BUTTONS
-========================= */
+/* BUTTONS */
 
 button {
     margin-top: 34px;
-
     border: 0;
     border-radius: 100px;
-
     padding: 15px 30px;
 
     background: var(--brown);
@@ -173,9 +163,7 @@ button:active {
     color: var(--brown);
 }
 
-/* =========================
-   DECORATION
-========================= */
+/* DECORATION */
 
 .blob {
     position: absolute;
@@ -199,9 +187,7 @@ button:active {
     left: -100px;
 }
 
-/* =========================
-   INTRO
-========================= */
+/* INTRO */
 
 .gift-icon {
     font-size: 3rem;
@@ -215,9 +201,7 @@ button:active {
     }
 }
 
-/* =========================
-   LETTER
-========================= */
+/* LETTER */
 
 .letter {
     background: rgba(255,255,255,.58);
@@ -238,9 +222,7 @@ button:active {
     margin-top: 22px;
 }
 
-/* =========================
-   PANTALLA 3 · POLAROIDS
-========================= */
+/* PANTALLA 3 · POLAROIDS */
 
 .photos {
     position: relative;
@@ -258,11 +240,9 @@ button:active {
 
     padding: 8px 8px 35px;
 
-    box-shadow:
-        0 18px 40px rgba(40,30,25,.17);
+    box-shadow: 0 18px 40px rgba(40,30,25,.17);
 
     border-radius: 3px;
-
     overflow: hidden;
 
     transition:
@@ -273,49 +253,35 @@ button:active {
 .photo img {
     width: 100%;
     height: 100%;
-
     object-fit: cover;
     object-position: center;
-
     display: block;
 }
 
 .photo::after {
     content: "";
     position: absolute;
-
     left: 0;
     right: 0;
     bottom: 0;
-
     height: 35px;
-
     background: white;
-
     z-index: 2;
 }
 
 .photo.one {
     left: 50%;
     top: 30px;
-
-    transform:
-        translateX(-80%)
-        rotate(-7deg);
+    transform: translateX(-80%) rotate(-7deg);
 }
 
 .photo.two {
     left: 50%;
     top: 15px;
-
-    transform:
-        translateX(-20%)
-        rotate(7deg);
+    transform: translateX(-20%) rotate(7deg);
 }
 
-/* =========================
-   PANTALLA 4 · SAMU
-========================= */
+/* PANTALLA 4 · SAMU */
 
 .couple-screen h2 {
     font-size: clamp(1.8rem, 7.5vw, 2.7rem);
@@ -329,7 +295,6 @@ button:active {
     height: 175px;
 
     margin: 27px auto 0;
-
     padding: 6px;
 
     border-radius: 50%;
@@ -358,7 +323,6 @@ button:active {
     content: "♥";
 
     position: absolute;
-
     right: -4px;
     bottom: 10px;
 
@@ -390,7 +354,6 @@ button:active {
 }
 
 @keyframes coupleReveal {
-
     from {
         opacity: 0;
         transform: scale(.8) translateY(15px);
@@ -402,54 +365,96 @@ button:active {
     }
 }
 
-/* =========================
-   FAKE GIFT
-========================= */
+/* ==================================
+   REGALO FALSO
+================================== */
 
 .fake-screen {
     background: #efeae4;
 }
 
 .fake-gift {
-    margin: 25px auto 0;
+    position: relative;
 
-    width: 230px;
-    height: 230px;
+    margin: 22px auto 0;
 
-    border-radius: 30px;
+    width: 260px;
 
-    background: white;
+    padding: 10px 10px 20px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    border-radius: 27px;
 
-    box-shadow: 0 25px 60px rgba(0,0,0,.1);
+    background: rgba(255,255,255,.92);
 
-    animation: giftReveal .8s cubic-bezier(.17,.67,.25,1.4);
+    box-shadow:
+        0 25px 60px rgba(65,45,40,.13);
+
+    animation:
+        giftReveal .85s
+        cubic-bezier(.17,.67,.25,1.35);
 }
 
-.fake-gift .emoji {
-    font-size: 5rem;
+.fake-gift-image {
+    width: 100%;
+    height: 205px;
+
+    border-radius: 19px;
+
+    overflow: hidden;
+
+    background: #f4f1ee;
 }
 
-.fake-gift strong {
-    margin-top: 15px;
-    font-size: 1.15rem;
+.fake-gift-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    display: block;
+}
+
+.fake-gift-info {
+    padding: 17px 8px 0;
+}
+
+.fake-gift-info strong {
+    display: block;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 1.3rem;
+    font-weight: 500;
+
+    line-height: 1.15;
+}
+
+.fake-gift-info span {
+    display: block;
+
+    margin-top: 7px;
+
+    font-size: .78rem;
+
+    opacity: .58;
+
+    letter-spacing: .3px;
 }
 
 @keyframes giftReveal {
-
     from {
-        transform: scale(.5) rotate(-10deg);
+        transform: scale(.55) rotate(-7deg);
         opacity: 0;
+    }
+
+    to {
+        transform: scale(1) rotate(0);
+        opacity: 1;
     }
 }
 
-/* =========================
-   JOKE
-========================= */
+/* JOKE */
 
 .joke-screen {
     background: #282422;
@@ -470,9 +475,7 @@ button:active {
     }
 }
 
-/* =========================
-   SPA
-========================= */
+/* SPA */
 
 .spa-screen {
     color: #493a35;
@@ -529,7 +532,6 @@ button:active {
 }
 
 @keyframes sparkle {
-
     from {
         opacity: .25;
         transform: scale(.7) rotate(0);
@@ -562,9 +564,7 @@ button:active {
     text-transform: uppercase;
 }
 
-/* =========================
-   FINAL
-========================= */
+/* FINAL */
 
 .final-heart {
     font-size: 3rem;
@@ -573,9 +573,7 @@ button:active {
     animation: heartbeat 1.7s infinite;
 }
 
-/* =========================
-   CONFETTI
-========================= */
+/* CONFETTI */
 
 .confetti {
     position: fixed;
@@ -591,7 +589,6 @@ button:active {
 }
 
 @keyframes fall {
-
     to {
         transform:
             translateY(110vh)
@@ -599,9 +596,7 @@ button:active {
     }
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:450px) {
 
@@ -655,6 +650,14 @@ button:active {
     .couple-screen button {
         margin-top: 23px;
     }
+
+    .fake-gift {
+        width: 245px;
+    }
+
+    .fake-gift-image {
+        height: 190px;
+    }
 }
 
 </style>
@@ -670,9 +673,7 @@ button:active {
 <div class="blob two"></div>
 
 
-<!-- ======================
-     1 · PORTADA
-====================== -->
+<!-- 1 · PORTADA -->
 
 <section class="screen active">
 
@@ -705,9 +706,7 @@ button:active {
 </section>
 
 
-<!-- ======================
-     2 · DEDICATORIA
-====================== -->
+<!-- 2 · DEDICATORIA -->
 
 <section class="screen">
 
@@ -761,9 +760,7 @@ button:active {
 </section>
 
 
-<!-- ======================
-     3 · RECUERDOS
-====================== -->
+<!-- 3 · RECUERDOS -->
 
 <section class="screen">
 
@@ -804,9 +801,7 @@ button:active {
 </section>
 
 
-<!-- ======================
-     4 · SAMU
-====================== -->
+<!-- 4 · SAMU -->
 
 <section class="screen couple-screen">
 
@@ -850,9 +845,7 @@ button:active {
 </section>
 
 
-<!-- ======================
-     5 · REGALO
-====================== -->
+<!-- 5 · INTRODUCCIÓN AL REGALO -->
 
 <section class="screen">
 
@@ -881,9 +874,7 @@ button:active {
 </section>
 
 
-<!-- ======================
-     6 · REGALO FALSO
-====================== -->
+<!-- 6 · REGALO FALSO -->
 
 <section class="screen fake-screen">
 
@@ -899,24 +890,33 @@ button:active {
 
     <div class="fake-gift">
 
-        <div class="emoji">
-            🧹
+        <div class="fake-gift-image">
+
+            <img
+                src="IMG_8482.jpeg"
+                alt="Aspiradora de mano"
+            >
+
         </div>
 
-        <strong>
-            REGALO PARA LA CASA
-        </strong>
+        <div class="fake-gift-info">
 
-        <small style="margin-top:7px;opacity:.55">
-            Aquí pondremos el regalo falso
-        </small>
+            <strong>
+                Aspiradora potente de mano
+            </strong>
+
+            <span>
+                Para coche y sillones
+            </span>
+
+        </div>
 
     </div>
 
-    <p style="margin-top:25px">
+    <p style="margin-top:22px">
         Porque no hay nada que diga
         “feliz cumpleaños” como algo
-        que necesitábamos para casa.
+        que necesitábamos para casa. ❤️
     </p>
 
     <button onclick="nextScreen()">
@@ -928,9 +928,7 @@ button:active {
 </section>
 
 
-<!-- ======================
-     7 · BROMA
-====================== -->
+<!-- 7 · BROMA -->
 
 <section class="screen joke-screen">
 
@@ -964,9 +962,7 @@ button:active {
 </section>
 
 
-<!-- ======================
-     8 · SPA
-====================== -->
+<!-- 8 · SPA -->
 
 <section class="screen spa-screen">
 
@@ -1017,9 +1013,7 @@ button:active {
 </section>
 
 
-<!-- ======================
-     9 · FINAL
-====================== -->
+<!-- 9 · FINAL -->
 
 <section class="screen">
 
@@ -1065,9 +1059,7 @@ button:active {
 
 <script>
 
-/* =========================
-   NAVIGATION
-========================= */
+/* NAVIGATION */
 
 const screens =
     document.querySelectorAll(".screen");
@@ -1111,9 +1103,7 @@ function updateProgress() {
 }
 
 
-/* =========================
-   CONFETTI
-========================= */
+/* CONFETTI */
 
 function confetti() {
 
