@@ -63,14 +63,11 @@ body {
 .screen {
     position: absolute;
     inset: 0;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     padding: 35px 25px;
-
     text-align: center;
 
     opacity: 0;
@@ -145,10 +142,8 @@ p {
 
 button {
     margin-top: 34px;
-
     border: 0;
     border-radius: 100px;
-
     padding: 15px 30px;
 
     background: var(--brown);
@@ -212,7 +207,9 @@ button:active {
 }
 
 @keyframes floating {
-    50% { transform: translateY(-10px); }
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 /* =========================
@@ -221,7 +218,6 @@ button:active {
 
 .letter {
     background: rgba(255,255,255,.58);
-
     padding: 30px 25px;
 
     border: 1px solid rgba(255,255,255,.8);
@@ -236,7 +232,6 @@ button:active {
     font-family: "Playfair Display", serif;
     font-style: italic;
     font-size: 1.3rem;
-
     margin-top: 22px;
 }
 
@@ -260,48 +255,81 @@ button:active {
 
     padding: 8px 8px 35px;
 
-    box-shadow: 0 18px 40px rgba(40,30,25,.15);
+    box-shadow:
+        0 18px 40px rgba(40,30,25,.17);
 
     border-radius: 3px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
 
-    font-size: .8rem;
-    color: #8d817c;
-
-    transition: .4s;
+    transition:
+        transform .5s cubic-bezier(.22,1,.36,1),
+        box-shadow .4s ease;
 }
 
-.photo::before {
+/* FOTO REAL */
+
+.photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    display: block;
+}
+
+/* espacio blanco inferior de Polaroid */
+
+.photo::after {
     content: "";
     position: absolute;
-    inset: 8px 8px 35px;
-    background:
-        linear-gradient(135deg,#e7d7cf,#c9b6ae);
-}
 
-.photo span {
-    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 35px;
+
+    background: white;
+
     z-index: 2;
-    width: 80%;
 }
 
 .photo.one {
     left: 50%;
     top: 30px;
-    transform: translateX(-80%) rotate(-7deg);
+
+    transform:
+        translateX(-80%)
+        rotate(-7deg);
 }
 
 .photo.two {
     left: 50%;
     top: 15px;
-    transform: translateX(-20%) rotate(7deg);
+
+    transform:
+        translateX(-20%)
+        rotate(7deg);
 }
 
-.photo:hover {
+.photo.one:hover {
     z-index: 10;
+
+    transform:
+        translateX(-80%)
+        rotate(-3deg)
+        scale(1.04);
+}
+
+.photo.two:hover {
+    z-index: 10;
+
+    transform:
+        translateX(-20%)
+        rotate(3deg)
+        scale(1.04);
 }
 
 /* =========================
@@ -366,7 +394,9 @@ button:active {
 }
 
 @keyframes blink {
-    50% { opacity: .25; }
+    50% {
+        opacity: .25;
+    }
 }
 
 /* =========================
@@ -420,6 +450,7 @@ button:active {
 }
 
 @keyframes sparkle {
+
     from {
         opacity: .25;
         transform: scale(.7) rotate(0);
@@ -481,8 +512,11 @@ button:active {
 }
 
 @keyframes fall {
+
     to {
-        transform: translateY(110vh) rotate(800deg);
+        transform:
+            translateY(110vh)
+            rotate(800deg);
     }
 }
 
@@ -500,7 +534,6 @@ button:active {
         transform: scale(.9);
     }
 
-    /* La dedicatoria es más larga que el texto provisional */
     .letter {
         padding: 24px 21px;
     }
@@ -533,344 +566,399 @@ button:active {
 <div class="blob two"></div>
 
 
-<!-- 1 · PORTADA -->
+<!-- ======================
+     1 · PORTADA
+====================== -->
 
 <section class="screen active">
 
-    <div class="content">
+<div class="content">
 
-        <div class="gift-icon">🎁</div>
+    <div class="gift-icon">🎁</div>
 
-        <div class="small">26 · 09 · 2026</div>
-
-        <h1>
-            Feliz<br>
-            cumpleaños,<br>
-            mamá <span class="heart">♥</span>
-        </h1>
-
-        <p>
-            Hemos preparado una pequeña cosa para ti.
-        </p>
-
-        <button onclick="nextScreen(); confetti();">
-            COMENZAR
-        </button>
-
+    <div class="small">
+        26 · 09 · 2026
     </div>
+
+    <h1>
+        Feliz<br>
+        cumpleaños,<br>
+        mamá <span class="heart">♥</span>
+    </h1>
+
+    <p>
+        Hemos preparado una pequeña cosa para ti.
+    </p>
+
+    <button onclick="nextScreen(); confetti();">
+        COMENZAR
+    </button>
+
+</div>
 
 </section>
 
 
-<!-- 2 · DEDICATORIA -->
+<!-- ======================
+     2 · DEDICATORIA
+====================== -->
 
 <section class="screen">
 
-    <div class="content">
+<div class="content">
 
-        <div class="small">
-            Primero, una cosa…
-        </div>
-
-        <div class="letter">
-
-            <h2>Para ti.</h2>
-
-            <p>
-                Hemos pasado por etapas no tan fáciles, momentos de cambios
-                y algún que otro bache, pero siempre hemos seguido hacia delante.
-                <br><br>
-
-                Ahora parece que todo empieza a colocarse en su sitio:
-                una casa nueva, una nueva etapa y muchísimos momentos buenos
-                que todavía nos quedan por vivir.
-                <br><br>
-
-                Y quién sabe… quizás el año que viene nos toque escribir
-                alguna nueva aventura juntos, un poquito más lejos de casa. ✈️❤️
-                <br><br>
-
-                Feliz cumpleaños, mamá. Te quiero ❤️
-            </p>
-
-            <div class="signature">
-                — Ale
-            </div>
-
-        </div>
-
-        <button onclick="nextScreen()">
-            SIGUIENTE →
-        </button>
-
+    <div class="small">
+        Primero, una cosa…
     </div>
 
-</section>
-
-
-<!-- 3 · FOTOS -->
-
-<section class="screen">
-
-    <div class="content">
-
-        <div class="small">
-            Algunos recuerdos
-        </div>
+    <div class="letter">
 
         <h2>
-            Hemos vivido unas cuantas cosas…
-        </h2>
-
-        <div class="photos">
-
-            <div class="photo one">
-                <span>📷<br><br>Aquí iría una foto tuya con tu madre</span>
-            </div>
-
-            <div class="photo two">
-                <span>📷<br><br>Aquí iría otra foto especial</span>
-            </div>
-
-        </div>
-
-        <button onclick="nextScreen()">
-            SEGUIR →
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- 4 · PAREJA -->
-
-<section class="screen">
-
-    <div class="content">
-
-        <div class="small">
-            Pero espera…
-        </div>
-
-        <h2>
-            Esto no viene solamente de mí.
+            Para ti.
         </h2>
 
         <p>
-            Aquí iría un pequeño texto relacionado con tu pareja.
+            Hemos pasado por etapas no tan fáciles,
+            momentos de cambios y algún que otro bache,
+            pero siempre hemos seguido hacia delante.
+
             <br><br>
-            Algo que introduzca que el regalo es de los dos.
+
+            Ahora parece que todo empieza a colocarse
+            en su sitio: una casa nueva, una nueva etapa
+            y muchísimos momentos buenos que todavía
+            nos quedan por vivir.
+
+            <br><br>
+
+            Y quién sabe… quizás el año que viene
+            nos toque escribir alguna nueva aventura
+            juntos, un poquito más lejos de casa. ✈️❤️
+
+            <br><br>
+
+            Feliz cumpleaños, mamá. Te quiero ❤️
         </p>
 
-        <div style="
-            margin:30px auto 0;
-            width:150px;
-            height:150px;
-            border-radius:50%;
-            background:white;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            box-shadow:0 15px 40px rgba(0,0,0,.1);
-            font-size:.75rem;
-            padding:20px;
-        ">
-            📷<br>
-            Foto con tu pareja
+        <div class="signature">
+            — Ale
         </div>
 
-        <button onclick="nextScreen()">
-            CONTINUAR →
-        </button>
-
     </div>
+
+    <button onclick="nextScreen()">
+        SIGUIENTE →
+    </button>
+
+</div>
 
 </section>
 
 
-<!-- 5 · REGALO -->
+<!-- ======================
+     3 · RECUERDOS
+====================== -->
 
 <section class="screen">
 
-    <div class="content">
+<div class="content">
 
-        <div class="small">
-            Y ahora sí…
+    <div class="small">
+        Algunos recuerdos
+    </div>
+
+    <h2>
+        Hemos vivido unas cuantas cosas…
+    </h2>
+
+    <div class="photos">
+
+        <div class="photo one">
+            <img
+                src="IMG_0106.jpeg"
+                alt="Recuerdo juntos"
+            >
         </div>
 
-        <h1>Tu regalo.</h1>
-
-        <p>
-            Sabemos que siempre dices que por tu cumpleaños
-            no quieres cosas para la casa…
-        </p>
-
-        <button onclick="nextScreen()">
-            DESCUBRIR REGALO 🎁
-        </button>
+        <div class="photo two">
+            <img
+                src="IMG_2871.jpeg"
+                alt="Otro recuerdo juntos"
+            >
+        </div>
 
     </div>
+
+    <button onclick="nextScreen()">
+        SEGUIR →
+    </button>
+
+</div>
 
 </section>
 
 
-<!-- 6 · REGALO FALSO -->
+<!-- ======================
+     4 · PAREJA
+====================== -->
+
+<section class="screen">
+
+<div class="content">
+
+    <div class="small">
+        Pero espera…
+    </div>
+
+    <h2>
+        Esto no viene solamente de mí.
+    </h2>
+
+    <p>
+        Aquí iría un pequeño texto relacionado
+        con tu pareja.
+
+        <br><br>
+
+        Algo que introduzca que el regalo
+        es de los dos.
+    </p>
+
+    <div style="
+        margin:30px auto 0;
+        width:150px;
+        height:150px;
+        border-radius:50%;
+        background:white;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        box-shadow:0 15px 40px rgba(0,0,0,.1);
+        font-size:.75rem;
+        padding:20px;
+    ">
+        📷<br>
+        Foto con tu pareja
+    </div>
+
+    <button onclick="nextScreen()">
+        CONTINUAR →
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- ======================
+     5 · REGALO
+====================== -->
+
+<section class="screen">
+
+<div class="content">
+
+    <div class="small">
+        Y ahora sí…
+    </div>
+
+    <h1>
+        Tu regalo.
+    </h1>
+
+    <p>
+        Sabemos que siempre dices que
+        por tu cumpleaños no quieres
+        cosas para la casa…
+    </p>
+
+    <button onclick="nextScreen()">
+        DESCUBRIR REGALO 🎁
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- ======================
+     6 · REGALO FALSO
+====================== -->
 
 <section class="screen fake-screen">
 
-    <div class="content">
+<div class="content">
 
-        <div class="small">
-            Feliz cumpleaños 🎉
+    <div class="small">
+        Feliz cumpleaños 🎉
+    </div>
+
+    <h2>
+        ¡¡SORPRESA!!
+    </h2>
+
+    <div class="fake-gift">
+
+        <div class="emoji">
+            🧹
         </div>
 
-        <h2>
-            ¡¡SORPRESA!!
-        </h2>
+        <strong>
+            REGALO PARA LA CASA
+        </strong>
 
-        <div class="fake-gift">
-
-            <div class="emoji">
-                🧹
-            </div>
-
-            <strong>
-                REGALO PARA LA CASA
-            </strong>
-
-            <small style="margin-top:7px;opacity:.55">
-                Aquí pondremos el regalo falso
-            </small>
-
-        </div>
-
-        <p style="margin-top:25px">
-            Porque no hay nada que diga
-            “feliz cumpleaños” como algo
-            que necesitábamos para casa.
-        </p>
-
-        <button onclick="nextScreen()">
-            😐 GRACIAS… SUPONGO
-        </button>
+        <small style="margin-top:7px;opacity:.55">
+            Aquí pondremos el regalo falso
+        </small>
 
     </div>
+
+    <p style="margin-top:25px">
+        Porque no hay nada que diga
+        “feliz cumpleaños” como algo
+        que necesitábamos para casa.
+    </p>
+
+    <button onclick="nextScreen()">
+        😐 GRACIAS… SUPONGO
+    </button>
+
+</div>
 
 </section>
 
 
-<!-- 7 · BROMA -->
+<!-- ======================
+     7 · BROMA
+====================== -->
 
 <section class="screen joke-screen">
 
-    <div class="content">
+<div class="content">
 
-        <div class="dots">...</div>
-
-        <h2 style="margin-top:20px">
-            No.
-        </h2>
-
-        <p>
-            Tranquila.
-            <br><br>
-            Es broma 😂
-        </p>
-
-        <button
-            class="light-button"
-            onclick="nextScreen()"
-        >
-            AHORA SÍ ♥
-        </button>
-
+    <div class="dots">
+        ...
     </div>
+
+    <h2 style="margin-top:20px">
+        No.
+    </h2>
+
+    <p>
+        Tranquila.
+
+        <br><br>
+
+        Es broma 😂
+    </p>
+
+    <button
+        class="light-button"
+        onclick="nextScreen()"
+    >
+        AHORA SÍ ♥
+    </button>
+
+</div>
 
 </section>
 
 
-<!-- 8 · SPA -->
+<!-- ======================
+     8 · SPA
+====================== -->
 
 <section class="screen spa-screen">
 
-    <div class="content">
+<div class="content">
 
-        <div class="spa-card">
+    <div class="spa-card">
 
-            <span class="sparkle a">✦</span>
-            <span class="sparkle b">✦</span>
+        <span class="sparkle a">
+            ✦
+        </span>
 
-            <div class="spa-icon">
-                ✨
-            </div>
+        <span class="sparkle b">
+            ✦
+        </span>
 
-            <div class="small">
-                Este sí es tu regalo
-            </div>
-
-            <h2>
-                Spa<br>
-                Capilar
-            </h2>
-
-            <p>
-                Un momento para desconectar,
-                relajarte y dejar que,
-                por una vez,
-                te cuiden a ti.
-            </p>
-
-            <div class="duration">
-                ✦ 30 — 60 minutos ✦
-            </div>
-
+        <div class="spa-icon">
+            ✨
         </div>
 
-        <button onclick="nextScreen(); confetti();">
-            CONTINUAR ♥
-        </button>
+        <div class="small">
+            Este sí es tu regalo
+        </div>
+
+        <h2>
+            Spa<br>
+            Capilar
+        </h2>
+
+        <p>
+            Un momento para desconectar,
+            relajarte y dejar que,
+            por una vez,
+            te cuiden a ti.
+        </p>
+
+        <div class="duration">
+            ✦ 30 — 60 minutos ✦
+        </div>
 
     </div>
+
+    <button onclick="nextScreen(); confetti();">
+        CONTINUAR ♥
+    </button>
+
+</div>
 
 </section>
 
 
-<!-- 9 · FINAL -->
+<!-- ======================
+     9 · FINAL
+====================== -->
 
 <section class="screen">
 
-    <div class="content">
+<div class="content">
 
-        <div class="final-heart">
-            ♥
-        </div>
-
-        <div class="small">
-            Y una última cosa
-        </div>
-
-        <h2>
-            Feliz cumpleaños,<br>
-            mamá.
-        </h2>
-
-        <p>
-            Aquí iría el mensaje final de los dos.
-            <br><br>
-            Algo cortito para cerrar la experiencia.
-        </p>
-
-        <div class="signature" style="margin-top:30px">
-            Con cariño,<br>
-            aquí irían vuestros nombres.
-        </div>
-
-        <button onclick="finalConfetti()">
-            ♥
-        </button>
-
+    <div class="final-heart">
+        ♥
     </div>
+
+    <div class="small">
+        Y una última cosa
+    </div>
+
+    <h2>
+        Feliz cumpleaños,<br>
+        mamá.
+    </h2>
+
+    <p>
+        Aquí iría el mensaje final de los dos.
+
+        <br><br>
+
+        Algo cortito para cerrar la experiencia.
+    </p>
+
+    <div
+        class="signature"
+        style="margin-top:30px"
+    >
+        Con cariño,<br>
+        aquí irían vuestros nombres.
+    </div>
+
+    <button onclick="finalConfetti()">
+        ♥
+    </button>
+
+</div>
 
 </section>
 
@@ -881,32 +969,45 @@ button:active {
    NAVIGATION
 ========================= */
 
-const screens = document.querySelectorAll(".screen");
-const progress = document.getElementById("progress");
+const screens =
+    document.querySelectorAll(".screen");
+
+const progress =
+    document.getElementById("progress");
 
 let current = 0;
 
-function nextScreen(){
 
-    if(current >= screens.length - 1) return;
+function nextScreen() {
 
-    screens[current].classList.remove("active");
+    if(current >= screens.length - 1)
+        return;
+
+    screens[current]
+        .classList.remove("active");
 
     current++;
 
-    setTimeout(()=>{
-        screens[current].classList.add("active");
+    setTimeout(() => {
+
+        screens[current]
+            .classList.add("active");
+
     },180);
 
     updateProgress();
 }
 
-function updateProgress(){
+
+function updateProgress() {
 
     const percent =
-        (current / (screens.length - 1)) * 100;
+        (current /
+        (screens.length - 1))
+        * 100;
 
-    progress.style.width = percent + "%";
+    progress.style.width =
+        percent + "%";
 }
 
 
@@ -914,7 +1015,7 @@ function updateProgress(){
    CONFETTI
 ========================= */
 
-function confetti(){
+function confetti() {
 
     const colors = [
         "#d59c96",
@@ -924,7 +1025,7 @@ function confetti(){
         "#ffffff"
     ];
 
-    for(let i = 0; i < 55; i++){
+    for(let i = 0; i < 55; i++) {
 
         const piece =
             document.createElement("div");
@@ -937,26 +1038,30 @@ function confetti(){
         piece.style.background =
             colors[
                 Math.floor(
-                    Math.random() * colors.length
+                    Math.random()
+                    * colors.length
                 )
             ];
 
         piece.style.animationDuration =
-            (2.5 + Math.random()*3) + "s";
+            (2.5 + Math.random()*3)
+            + "s";
 
         piece.style.animationDelay =
-            Math.random()*.7 + "s";
+            Math.random()*.7
+            + "s";
 
-        document.body.appendChild(piece);
+        document.body
+            .appendChild(piece);
 
-        setTimeout(()=>{
+        setTimeout(() => {
             piece.remove();
         },6000);
     }
 }
 
 
-function finalConfetti(){
+function finalConfetti() {
 
     confetti();
 
