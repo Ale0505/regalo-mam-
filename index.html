@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz cumpleaños, mamá ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --cream: #f8f3ed;
+    --cream2: #efe5dc;
+    --rose: #c9968f;
+    --rose-dark: #936b66;
+    --brown: #453735;
+    --white: #ffffff;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background: var(--cream);
+    color: var(--brown);
+}
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    z-index: 100;
+    background: rgba(0,0,0,.05);
+}
+
+.progress {
+    height: 100%;
+    width: 0;
+    background: var(--rose);
+    transition: width .7s cubic-bezier(.22,1,.36,1);
+}
+
+/* =========================
+   SCREENS
+========================= */
+
+.screen {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 35px 25px;
+
+    text-align: center;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transform: translateY(20px) scale(.985);
+
+    transition:
+        opacity .7s ease,
+        transform .8s cubic-bezier(.22,1,.36,1);
+}
+
+.screen.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.content {
+    width: 100%;
+    max-width: 500px;
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+.small {
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    opacity: .55;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-family: "Playfair Display", serif;
+    font-weight: 500;
+    font-size: clamp(3rem, 13vw, 5rem);
+    line-height: .95;
+    margin-bottom: 22px;
+}
+
+h2 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.1rem, 9vw, 3.3rem);
+    font-weight: 500;
+    line-height: 1.05;
+    margin-bottom: 22px;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.7;
+    opacity: .78;
+}
+
+.heart {
+    display: inline-block;
+    animation: heartbeat 2s infinite;
+}
+
+@keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    10% { transform: scale(1.18); }
+    20% { transform: scale(1); }
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+    margin-top: 34px;
+
+    border: 0;
+    border-radius: 100px;
+
+    padding: 15px 30px;
+
+    background: var(--brown);
+    color: white;
+
+    font-family: inherit;
+    font-size: .82rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    box-shadow: 0 12px 30px rgba(50,35,30,.16);
+
+    transition: .25s;
+}
+
+button:active {
+    transform: scale(.95);
+}
+
+.light-button {
+    background: white;
+    color: var(--brown);
+}
+
+/* =========================
+   DECORATION
+========================= */
+
+.blob {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: .32;
+    pointer-events: none;
+}
+
+.blob.one {
+    background: #e3a8a1;
+    top: -100px;
+    right: -100px;
+}
+
+.blob.two {
+    background: #e7cfb5;
+    bottom: -120px;
+    left: -100px;
+}
+
+/* =========================
+   INTRO
+========================= */
+
+.gift-icon {
+    font-size: 3rem;
+    margin-bottom: 25px;
+    animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+    50% { transform: translateY(-10px); }
+}
+
+/* =========================
+   LETTER
+========================= */
+
+.letter {
+    background: rgba(255,255,255,.58);
+
+    padding: 30px 25px;
+
+    border: 1px solid rgba(255,255,255,.8);
+    border-radius: 25px;
+
+    backdrop-filter: blur(15px);
+
+    box-shadow: 0 25px 60px rgba(80,50,40,.08);
+}
+
+.signature {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 1.3rem;
+
+    margin-top: 22px;
+}
+
+/* =========================
+   PHOTOS
+========================= */
+
+.photos {
+    position: relative;
+    height: 330px;
+    margin-top: 15px;
+}
+
+.photo {
+    position: absolute;
+
+    width: 185px;
+    height: 245px;
+
+    background: white;
+
+    padding: 8px 8px 35px;
+
+    box-shadow: 0 18px 40px rgba(40,30,25,.15);
+
+    border-radius: 3px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: .8rem;
+    color: #8d817c;
+
+    transition: .4s;
+}
+
+.photo::before {
+    content: "";
+    position: absolute;
+    inset: 8px 8px 35px;
+    background:
+        linear-gradient(135deg,#e7d7cf,#c9b6ae);
+}
+
+.photo span {
+    position: absolute;
+    z-index: 2;
+    width: 80%;
+}
+
+.photo.one {
+    left: 50%;
+    top: 30px;
+    transform: translateX(-80%) rotate(-7deg);
+}
+
+.photo.two {
+    left: 50%;
+    top: 15px;
+    transform: translateX(-20%) rotate(7deg);
+}
+
+.photo:hover {
+    z-index: 10;
+}
+
+/* =========================
+   FAKE GIFT
+========================= */
+
+.fake-screen {
+    background: #efeae4;
+}
+
+.fake-gift {
+    margin-top: 25px;
+
+    width: 230px;
+    height: 230px;
+
+    border-radius: 30px;
+
+    background: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 25px 60px rgba(0,0,0,.1);
+
+    animation: giftReveal .8s cubic-bezier(.17,.67,.25,1.4);
+}
+
+.fake-gift .emoji {
+    font-size: 5rem;
+}
+
+.fake-gift strong {
+    margin-top: 15px;
+    font-size: 1.15rem;
+}
+
+@keyframes giftReveal {
+    from {
+        transform: scale(.5) rotate(-10deg);
+        opacity: 0;
+    }
+}
+
+/* =========================
+   JOKE
+========================= */
+
+.joke-screen {
+    background: #282422;
+    color: white;
+}
+
+.dots {
+    font-family: "Playfair Display";
+    font-size: 5rem;
+    letter-spacing: 10px;
+
+    animation: blink 1.3s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: .25; }
+}
+
+/* =========================
+   SPA
+========================= */
+
+.spa-screen {
+    color: #493a35;
+
+    background:
+        radial-gradient(circle at top,#f5e3dc 0%,transparent 45%),
+        linear-gradient(180deg,#fffaf6,#eaded4);
+}
+
+.spa-card {
+    position: relative;
+
+    width: 100%;
+
+    padding: 40px 25px;
+
+    background: rgba(255,255,255,.6);
+
+    border: 1px solid rgba(255,255,255,.9);
+    border-radius: 30px;
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 30px 70px rgba(91,64,55,.12);
+
+    overflow: hidden;
+}
+
+.sparkle {
+    position: absolute;
+    font-size: 1.2rem;
+
+    animation: sparkle 2.5s infinite alternate;
+}
+
+.sparkle.a {
+    top: 25px;
+    left: 30px;
+}
+
+.sparkle.b {
+    right: 30px;
+    bottom: 30px;
+    animation-delay: 1s;
+}
+
+@keyframes sparkle {
+    from {
+        opacity: .25;
+        transform: scale(.7) rotate(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.2) rotate(15deg);
+    }
+}
+
+.spa-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.duration {
+    display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 8px 17px;
+
+    border-radius: 100px;
+
+    background: rgba(151,104,96,.10);
+
+    font-size: .75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+/* =========================
+   FINAL
+========================= */
+
+.final-heart {
+    font-size: 3rem;
+    margin-bottom: 25px;
+
+    animation: heartbeat 1.7s infinite;
+}
+
+/* =========================
+   CONFETTI
+========================= */
+
+.confetti {
+    position: fixed;
+
+    width: 7px;
+    height: 12px;
+
+    top: -20px;
+
+    z-index: 500;
+
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(800deg);
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:450px) {
+
+    .screen {
+        padding: 28px 22px;
+    }
+
+    .photos {
+        transform: scale(.9);
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="progress-container">
+    <div class="progress" id="progress"></div>
+</div>
+
+<div class="blob one"></div>
+<div class="blob two"></div>
+
+
+<!-- 1 · PORTADA -->
+
+<section class="screen active">
+
+    <div class="content">
+
+        <div class="gift-icon">🎁</div>
+
+        <div class="small">26 · 09 · 2026</div>
+
+        <h1>
+            Feliz<br>
+            cumpleaños,<br>
+            mamá <span class="heart">♥</span>
+        </h1>
+
+        <p>
+            Hemos preparado una pequeña cosa para ti.
+        </p>
+
+        <button onclick="nextScreen(); confetti();">
+            COMENZAR
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- 2 · DEDICATORIA -->
+
+<section class="screen">
+
+    <div class="content">
+
+        <div class="small">
+            Primero, una cosa…
+        </div>
+
+        <div class="letter">
+
+            <h2>Para ti.</h2>
+
+            <p>
+                Aquí iría tu dedicatoria personal para tu madre.
+                <br><br>
+                Puedes contarle lo que quieras, agradecerle cosas,
+                recordar algún momento o simplemente escribirle
+                unas palabras por su cumpleaños.
+            </p>
+
+            <div class="signature">
+                — Aquí iría tu nombre ♥
+            </div>
+
+        </div>
+
+        <button onclick="nextScreen()">
+            SIGUIENTE →
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- 3 · FOTOS -->
+
+<section class="screen">
+
+    <div class="content">
+
+        <div class="small">
+            Algunos recuerdos
+        </div>
+
+        <h2>
+            Hemos vivido unas cuantas cosas…
+        </h2>
+
+        <div class="photos">
+
+            <div class="photo one">
+                <span>📷<br><br>Aquí iría una foto tuya con tu madre</span>
+            </div>
+
+            <div class="photo two">
+                <span>📷<br><br>Aquí iría otra foto especial</span>
+            </div>
+
+        </div>
+
+        <button onclick="nextScreen()">
+            SEGUIR →
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- 4 · PAREJA -->
+
+<section class="screen">
+
+    <div class="content">
+
+        <div class="small">
+            Pero espera…
+        </div>
+
+        <h2>
+            Esto no viene solamente de mí.
+        </h2>
+
+        <p>
+            Aquí iría un pequeño texto relacionado con tu pareja.
+            <br><br>
+            Algo que introduzca que el regalo es de los dos.
+        </p>
+
+        <div style="
+            margin:30px auto 0;
+            width:150px;
+            height:150px;
+            border-radius:50%;
+            background:white;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            box-shadow:0 15px 40px rgba(0,0,0,.1);
+            font-size:.75rem;
+            padding:20px;
+        ">
+            📷<br>
+            Foto con tu pareja
+        </div>
+
+        <button onclick="nextScreen()">
+            CONTINUAR →
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- 5 · REGALO -->
+
+<section class="screen">
+
+    <div class="content">
+
+        <div class="small">
+            Y ahora sí…
+        </div>
+
+        <h1>Tu regalo.</h1>
+
+        <p>
+            Sabemos que siempre dices que por tu cumpleaños
+            no quieres cosas para la casa…
+        </p>
+
+        <button onclick="nextScreen()">
+            DESCUBRIR REGALO 🎁
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- 6 · REGALO FALSO -->
+
+<section class="screen fake-screen">
+
+    <div class="content">
+
+        <div class="small">
+            Feliz cumpleaños 🎉
+        </div>
+
+        <h2>
+            ¡¡SORPRESA!!
+        </h2>
+
+        <div class="fake-gift">
+
+            <div class="emoji">
+                🧹
+            </div>
+
+            <strong>
+                REGALO PARA LA CASA
+            </strong>
+
+            <small style="margin-top:7px;opacity:.55">
+                Aquí pondremos el regalo falso
+            </small>
+
+        </div>
+
+        <p style="margin-top:25px">
+            Porque no hay nada que diga
+            “feliz cumpleaños” como algo
+            que necesitábamos para casa.
+        </p>
+
+        <button onclick="nextScreen()">
+            😐 GRACIAS… SUPONGO
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- 7 · BROMA -->
+
+<section class="screen joke-screen">
+
+    <div class="content">
+
+        <div class="dots">...</div>
+
+        <h2 style="margin-top:20px">
+            No.
+        </h2>
+
+        <p>
+            Tranquila.
+            <br><br>
+            Es broma 😂
+        </p>
+
+        <button
+            class="light-button"
+            onclick="nextScreen()"
+        >
+            AHORA SÍ ♥
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- 8 · SPA -->
+
+<section class="screen spa-screen">
+
+    <div class="content">
+
+        <div class="spa-card">
+
+            <span class="sparkle a">✦</span>
+            <span class="sparkle b">✦</span>
+
+            <div class="spa-icon">
+                ✨
+            </div>
+
+            <div class="small">
+                Este sí es tu regalo
+            </div>
+
+            <h2>
+                Spa<br>
+                Capilar
+            </h2>
+
+            <p>
+                Un momento para desconectar,
+                relajarte y dejar que,
+                por una vez,
+                te cuiden a ti.
+            </p>
+
+            <div class="duration">
+                ✦ 30 — 60 minutos ✦
+            </div>
+
+        </div>
+
+        <button onclick="nextScreen(); confetti();">
+            CONTINUAR ♥
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- 9 · FINAL -->
+
+<section class="screen">
+
+    <div class="content">
+
+        <div class="final-heart">
+            ♥
+        </div>
+
+        <div class="small">
+            Y una última cosa
+        </div>
+
+        <h2>
+            Feliz cumpleaños,<br>
+            mamá.
+        </h2>
+
+        <p>
+            Aquí iría el mensaje final de los dos.
+            <br><br>
+            Algo cortito para cerrar la experiencia.
+        </p>
+
+        <div class="signature" style="margin-top:30px">
+            Con cariño,<br>
+            aquí irían vuestros nombres.
+        </div>
+
+        <button onclick="finalConfetti()">
+            ♥
+        </button>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================
+   NAVIGATION
+========================= */
+
+const screens = document.querySelectorAll(".screen");
+const progress = document.getElementById("progress");
+
+let current = 0;
+
+function nextScreen(){
+
+    if(current >= screens.length - 1) return;
+
+    screens[current].classList.remove("active");
+
+    current++;
+
+    setTimeout(()=>{
+        screens[current].classList.add("active");
+    },180);
+
+    updateProgress();
+}
+
+function updateProgress(){
+
+    const percent =
+        (current / (screens.length - 1)) * 100;
+
+    progress.style.width = percent + "%";
+}
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+function confetti(){
+
+    const colors = [
+        "#d59c96",
+        "#e7c6ad",
+        "#a88983",
+        "#f3d6bd",
+        "#ffffff"
+    ];
+
+    for(let i = 0; i < 55; i++){
+
+        const piece =
+            document.createElement("div");
+
+        piece.classList.add("confetti");
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+        piece.style.background =
+            colors[
+                Math.floor(
+                    Math.random() * colors.length
+                )
+            ];
+
+        piece.style.animationDuration =
+            (2.5 + Math.random()*3) + "s";
+
+        piece.style.animationDelay =
+            Math.random()*.7 + "s";
+
+        document.body.appendChild(piece);
+
+        setTimeout(()=>{
+            piece.remove();
+        },6000);
+    }
+}
+
+
+function finalConfetti(){
+
+    confetti();
+
+    setTimeout(confetti,500);
+    setTimeout(confetti,1000);
+
+}
+
+</script>
+
+</body>
+</html>
