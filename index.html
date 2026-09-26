@@ -2,7 +2,13 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- BLOQUEO DE ZOOM EN MÓVIL -->
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
+
 <title>Feliz cumpleaños, mamá ❤️</title>
 
 <style>
@@ -29,15 +35,22 @@ html, body {
     overflow: hidden;
 }
 
+/* EVITA EL ZOOM POR DOBLE TOQUE */
+
+html {
+    touch-action: manipulation;
+}
+
 body {
+    touch-action: manipulation;
+    -webkit-text-size-adjust: 100%;
+
     font-family: "DM Sans", sans-serif;
     background: var(--cream);
     color: var(--brown);
 }
 
-/* =========================
-   PROGRESS
-========================= */
+/* PROGRESS */
 
 .progress-container {
     position: fixed;
@@ -56,9 +69,7 @@ body {
     transition: width .7s cubic-bezier(.22,1,.36,1);
 }
 
-/* =========================
-   SCREENS
-========================= */
+/* SCREENS */
 
 .screen {
     position: absolute;
@@ -90,9 +101,7 @@ body {
     max-width: 500px;
 }
 
-/* =========================
-   TYPOGRAPHY
-========================= */
+/* TYPOGRAPHY */
 
 .small {
     font-size: .72rem;
@@ -135,9 +144,7 @@ p {
     20% { transform: scale(1); }
 }
 
-/* =========================
-   BUTTONS
-========================= */
+/* BUTTONS */
 
 button {
     margin-top: 34px;
@@ -158,6 +165,8 @@ button {
     box-shadow: 0 12px 30px rgba(50,35,30,.16);
 
     transition: .25s;
+
+    touch-action: manipulation;
 }
 
 button:active {
@@ -169,9 +178,7 @@ button:active {
     color: var(--brown);
 }
 
-/* =========================
-   DECORATION
-========================= */
+/* DECORATION */
 
 .blob {
     position: absolute;
@@ -195,9 +202,7 @@ button:active {
     left: -100px;
 }
 
-/* =========================
-   INTRO
-========================= */
+/* INTRO */
 
 .gift-icon {
     font-size: 3rem;
@@ -211,9 +216,7 @@ button:active {
     }
 }
 
-/* =========================
-   LETTER
-========================= */
+/* LETTER */
 
 .letter {
     background: rgba(255,255,255,.58);
@@ -273,6 +276,7 @@ button:active {
 
     -webkit-tap-highlight-color: transparent;
     user-select: none;
+    touch-action: manipulation;
 
     box-shadow:
         0 18px 40px rgba(40,30,25,.17);
@@ -386,9 +390,7 @@ button:active {
         scale(.93);
 }
 
-/* =========================
-   PANTALLA 4 · SAMU
-========================= */
+/* PANTALLA 4 · SAMU */
 
 .couple-screen h2 {
     font-size: clamp(1.8rem, 7.5vw, 2.7rem);
@@ -474,9 +476,7 @@ button:active {
     }
 }
 
-/* =========================
-   REGALO FALSO
-========================= */
+/* REGALO FALSO */
 
 .fake-screen {
     background: #efeae4;
@@ -564,9 +564,7 @@ button:active {
     }
 }
 
-/* =========================
-   JOKE
-========================= */
+/* JOKE */
 
 .joke-screen {
     background: #282422;
@@ -626,8 +624,6 @@ button:active {
     opacity: .48;
 }
 
-/* CONTENEDOR 3D */
-
 .spa-flip {
     width: 100%;
     max-width: 330px;
@@ -640,6 +636,7 @@ button:active {
     cursor: pointer;
 
     -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .spa-flip-inner {
@@ -659,8 +656,6 @@ button:active {
     transform: rotateY(180deg);
 }
 
-/* DOS CARAS */
-
 .spa-front,
 .spa-back {
     position: absolute;
@@ -677,8 +672,6 @@ button:active {
     box-shadow:
         0 28px 65px rgba(91,64,55,.15);
 }
-
-/* PARTE DELANTERA */
 
 .spa-front {
     background: white;
@@ -773,8 +766,6 @@ button:active {
     opacity: .45;
 }
 
-/* PARTE TRASERA */
-
 .spa-back {
     transform: rotateY(180deg);
 
@@ -864,20 +855,49 @@ button:active {
     opacity: .4;
 }
 
-/* =========================
-   FINAL
-========================= */
+/* ==========================================
+   PANTALLA 9 · FINAL
+========================================== */
 
 .final-heart {
     font-size: 3rem;
+
     margin-bottom: 25px;
 
     animation: heartbeat 1.7s infinite;
 }
 
-/* =========================
-   CONFETTI
-========================= */
+.final-screen h2 {
+    font-size: clamp(2.5rem, 10vw, 3.6rem);
+}
+
+.final-message {
+    font-family: "Playfair Display", serif;
+
+    font-size: 1.3rem;
+
+    line-height: 1.6;
+
+    opacity: .82;
+
+    max-width: 390px;
+
+    margin: 0 auto;
+}
+
+.final-signature {
+    font-family: "Playfair Display", serif;
+
+    font-style: italic;
+
+    font-size: 1.35rem;
+
+    line-height: 1.5;
+
+    margin-top: 32px;
+}
+
+/* CONFETTI */
 
 .confetti {
     position: fixed;
@@ -901,9 +921,7 @@ button:active {
     }
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:450px) {
 
@@ -1033,6 +1051,16 @@ button:active {
 
     .spa-screen button {
         margin-top: 18px;
+    }
+
+    /* Final */
+
+    .final-message {
+        font-size: 1.18rem;
+    }
+
+    .final-signature {
+        font-size: 1.25rem;
     }
 }
 
@@ -1429,44 +1457,32 @@ button:active {
 
                     <div class="spa-item">
                         <div class="spa-check">✓</div>
-                        <span>
-                            Head spa japonés
-                        </span>
+                        <span>Head spa japonés</span>
                     </div>
 
                     <div class="spa-item">
                         <div class="spa-check">✓</div>
-                        <span>
-                            Cuero cabelludo y cara
-                        </span>
+                        <span>Cuero cabelludo y cara</span>
                     </div>
 
                     <div class="spa-item">
                         <div class="spa-check">✓</div>
-                        <span>
-                            Bebida de cortesía
-                        </span>
+                        <span>Bebida de cortesía</span>
                     </div>
 
                     <div class="spa-item">
                         <div class="spa-check">✓</div>
-                        <span>
-                            Masaje capilar profundo
-                        </span>
+                        <span>Masaje capilar profundo</span>
                     </div>
 
                     <div class="spa-item">
                         <div class="spa-check">✓</div>
-                        <span>
-                            Secado
-                        </span>
+                        <span>Secado</span>
                     </div>
 
                     <div class="spa-item">
                         <div class="spa-check">✓</div>
-                        <span>
-                            Mascarilla facial relajante
-                        </span>
+                        <span>Mascarilla facial relajante</span>
                     </div>
 
                 </div>
@@ -1493,7 +1509,7 @@ button:active {
 
 <!-- 9 · FINAL -->
 
-<section class="screen">
+<section class="screen final-screen">
 
 <div class="content">
 
@@ -1502,28 +1518,21 @@ button:active {
     </div>
 
     <div class="small">
-        Y una última cosa
+        Para terminar…
     </div>
 
     <h2>
-        Feliz cumpleaños,<br>
-        mamá.
+        Feliz cumple,<br>
+        mamá ❤️
     </h2>
 
-    <p>
-        Aquí iría el mensaje final de los dos.
+    <div class="final-message">
+        Espero que te haya gustado el regalo.
+    </div>
 
-        <br><br>
-
-        Algo cortito para cerrar la experiencia.
-    </p>
-
-    <div
-        class="signature"
-        style="margin-top:30px"
-    >
+    <div class="final-signature">
         Con cariño,<br>
-        aquí irían vuestros nombres.
+        — Samu y Ale
     </div>
 
     <button onclick="finalConfetti()">
@@ -1537,9 +1546,7 @@ button:active {
 
 <script>
 
-/* =========================
-   NAVIGATION
-========================= */
+/* NAVIGATION */
 
 const screens =
     document.querySelectorAll(".screen");
@@ -1583,9 +1590,7 @@ function updateProgress() {
 }
 
 
-/* =========================
-   POLAROIDS INTERACTIVAS
-========================= */
+/* POLAROIDS INTERACTIVAS */
 
 function bringPhotoFront(selectedPhoto) {
 
@@ -1604,9 +1609,7 @@ function bringPhotoFront(selectedPhoto) {
 }
 
 
-/* =========================
-   TARJETA HEAD SPA
-========================= */
+/* TARJETA HEAD SPA */
 
 function flipSpa(card) {
 
@@ -1615,9 +1618,7 @@ function flipSpa(card) {
 }
 
 
-/* =========================
-   CONFETTI
-========================= */
+/* CONFETTI */
 
 function confetti() {
 
